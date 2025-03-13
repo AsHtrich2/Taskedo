@@ -6,6 +6,13 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = _fastapi.FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Adjust this if your frontend is served from a different origin
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 @app.post("/api/tasks", response_model=_schemas.Tasks)
