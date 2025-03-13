@@ -13,9 +13,9 @@ const Taskbar = ({ id, title, details, start, selectedDate, priority }) => {
             case 'Medium':
                 return 'orange'; 
             case 'Low':
-                return 'green'; 
+                return 'blue'; 
             case 'None':
-                return 'black'; 
+                return 'green'; 
         }
     };
 

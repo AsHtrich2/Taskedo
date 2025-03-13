@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import ButtonIcon from '../components/ButtonIcon';
-import { faHome } from '@fortawesome/free-solid-svg-icons'; 
+import { faCancel, faTasks, faSave } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
@@ -109,15 +109,15 @@ function ThisTask() {
       <div className="FirstCont">
         <div className="TopButtonCont">
           <div className="TopButtonContLeft">
-            <ButtonIcon icon={faHome} text={string} />
+            <ButtonIcon icon={faTasks} text={string} />
           </div>
           <div className="TopButtonContRight">
             <Link to="/">
-              <ButtonIcon icon={faHome} text="Discard" />
+              <ButtonIcon icon={faCancel} text="Discard" />
             </Link>
             
             <Link to="/">
-            <div onClick={handleUpdateTask}><ButtonIcon icon={faHome} text="Add task" /></div>
+            <div onClick={handleUpdateTask}><ButtonIcon icon={faSave} text="Edit task" /></div>
             </Link>
           </div>
         </div>

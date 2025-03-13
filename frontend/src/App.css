@@ -1,17 +1,19 @@
 .App {
   text-align: center;
+  background-color: #1f1f1c;
 }
 
 .header {
   height: 70px;
   border-bottom: 1px solid #000000; 
-  background-color: beige;
+  background-color: #f5f5dc;
   display: flex;
   justify-content: space-between;
   border-radius: 5px;
   align-items: center;
   padding-left: 150px;
   padding-right: 150px;
+  
 }
 
 .header h1 {
@@ -25,17 +27,14 @@
 .FirstCont {
   margin-left: 200px;
   margin-right: 200px;
-  background-color: aliceblue;
   height: 500px;
   padding-top: 20px;
 }
 
 .TopButtonCont {
-  background-color: aqua;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  
+  justify-content: space-between; 
 }
 
 .TopButtonContLeft {
@@ -54,12 +53,13 @@
   display: flex;
   align-items: center; /* Aligns the icon and text vertically */
   padding: 10px 20px; /* Adds padding inside the button */
-  border: 1px solid #000000; 
+  border: 1px solid #2b2b2b; 
   border-radius: 5px; 
-  background-color: #007bff; 
-  color: white; 
+  background-color: #f5f5dc; 
+  color: black; 
   font-size: 16px; 
   cursor: pointer; 
+  
 }
 
 .icon-button div {
@@ -83,13 +83,19 @@
 
 .SecCont {
   margin-top: 10px;
-  background-color: aquamarine;
+  background-color: #1f1f1c; 
   height: 420px; 
   padding: 10px;
   overflow-y: auto; 
   display: flex;
   flex-direction: column; 
-  gap: 10px; 
+  gap: 5px; 
+  border-radius: 15px;
+  border: 3px solid beige;
+}
+
+.SecContSpec {
+  gap: 10px;
 }
 
 .simpFlexRow {
@@ -104,11 +110,12 @@
   height: 65px; 
   border: 1px solid #ccc;
   border-radius: 15px;
-  background-color: #f9f9f9;
+  background-color: beige;
   max-width: 90%; 
   align-items: center; 
   padding: 0 10px; /* Add padding to the left and right */
-  flex-grow: 1; /* Ensure it takes up available space */
+  flex-grow: 1; 
+  color: black;/* Ensure it takes up available space */
 }
 
 .left-section {
@@ -123,7 +130,6 @@
 .task-title {
   font-size: 20px;
   font-style: bold ;
-  color: #000000;
   margin: 0;
   line-height: 1.2;
   white-space: nowrap;
@@ -136,7 +142,6 @@
 
 .task-details {
   font-size: 14px;
-  color: #555;
   margin: 0;
   line-height: 1.2;
   white-space: nowrap;
@@ -158,7 +163,6 @@
   align-items: center;
   border-radius: 15px;
   font-size: 10px;
-  color: #888;
 }
 
 .task-time {
@@ -172,9 +176,9 @@
 }
 
 .complete-btn {
-  background-color: white;
-  color: #007bff;
-  border: 2px solid #007bff;
+  background-color: beige;
+  color: black;
+  border: 2px solid black;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -188,8 +192,9 @@
 }
 
 .complete-btn:hover {
-  background-color: #007bff;
-  color: white;
+  background-color: black;
+  color: beige;
+  border: 2px solid beige;
 }
 
 .line-container {
@@ -201,7 +206,7 @@
 .horizontal-line {
   flex-grow: 1;
   border: none;
-  border-top: 2px solid #000;
+  border-top: 2px solid beige;
   margin: 0;
   
 }
@@ -209,7 +214,7 @@
 .line-text {
   margin-right: 10px; 
   font-size: 16px;   
-  color: #000;       
+  color: beige;       
 }
 
 .inputBox {
@@ -217,7 +222,7 @@
   height: 40px; 
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: beige;
   max-width: 100%; 
   align-items: center; 
   padding: 0 10px; 
@@ -228,7 +233,7 @@
   display: flex;  
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: beige;
   max-width: 100%; 
   align-items: center; 
   padding: 10px 10px; 
@@ -241,7 +246,7 @@
   height: 40px; 
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: beige;
   max-width: 130px; 
   align-items: center; 
   padding: 0 10px; 
@@ -256,12 +261,14 @@
   align-items: center;
   gap: 20px; 
   justify-content: center;
+  color: beige;
 }
 
 .time-input-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 
 .time-input {
@@ -270,19 +277,21 @@
   border-radius: 4px;
   border: 1px solid #ccc;
   width: 150px; 
+  background-color: beige;
 }
 
 .time-input-wrapper label {
   font-size: 14px;
   margin-bottom: 5px;
   font-weight: bold;
-  color: #333;
+  color: beige;
 }
 
 .button-container {
   display: flex; 
   justify-content: space-around; 
   gap: 10px; 
+  
 }
 
 .button {
@@ -290,16 +299,16 @@
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #f0f0f0;
+  background-color: beige;
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: #007bff;
-  color: white;
+  background-color: black;
+  color: beige;
 }
 
 .selected {
-  background-color: #007bff;
-  color: white;
+  background-color: black;
+  color: beige;
 }

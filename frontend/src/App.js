@@ -4,14 +4,13 @@ import Header from './components/Header';
 import ButtonIcon from './components/ButtonIcon';
 // import IconIcon from './components/IconIcon';
 import Taskbar from './components/Taskbar';
-import { faHome } from '@fortawesome/free-solid-svg-icons'; 
-// import EventIcon from '@mui/icons-material/Event';
-import { Link } from 'react-router-dom';
+import { faCalendarAlt, faCalendarCheck, faPlus } from '@fortawesome/free-solid-svg-icons'; 
+import { useNavigate } from 'react-router-dom';
 
 function App() {
   const [taskData, setTaskData] = useState([]);
   const [statData, setStatData] = useState({ pendingTasks: 0, completedTasks: 0 , totalTasks: 0});
-
+  const navigate = useNavigate();
   const getStats = async () => {
     const requestOptions = {
       method: "GET",
@@ -64,19 +63,19 @@ function App() {
       <div className='FirstCont'>
         <div className='TopButtonCont'>
           <div className='TopButtonContLeft'>
-            <ButtonIcon icon={faHome} text={`${statData.pendingTasks} Pending`} />
-            <ButtonIcon icon={faHome} text={`${statData.completedTasks} Completed`} />
+            <ButtonIcon icon={faCalendarAlt} text={`${statData.pendingTasks} Pending`} />
+            <ButtonIcon icon={faCalendarCheck} text={`${statData.completedTasks} Completed`} />
           </div>
           <div className='TopButtonContRight'>
             {/* <IconIcon /> */}
-            <Link to="/newtask">
-              <ButtonIcon icon={faHome} text="New task" />
-            </Link>
+            <div onClick={() => navigate("/newtask")}>
+              <ButtonIcon icon={faPlus} text="New task" />
+            </div>
           </div>
         </div>
-        <div className='SecCont'>
+        <div className='SecCont SecContSpec'>
           {taskData.map((task, index) => (
-            
+
             <Taskbar 
               id={task.taskID}
               title={task.title}

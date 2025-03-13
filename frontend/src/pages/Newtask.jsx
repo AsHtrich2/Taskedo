@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import ButtonIcon from '../components/ButtonIcon';
-import { faHome } from '@fortawesome/free-solid-svg-icons'; 
+import { faCancel, faTasks, faSave } from '@fortawesome/free-solid-svg-icons'; 
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
@@ -95,15 +95,15 @@ function Newtask() {
       <div className="FirstCont">
         <div className="TopButtonCont">
           <div className="TopButtonContLeft">
-            <ButtonIcon icon={faHome} text={`Task no ${statData.totalTasks}`} />
+            <ButtonIcon icon={faTasks} text={`Task no ${statData.totalTasks}`} />
           </div>
           <div className="TopButtonContRight">
             <Link to="/">
-              <ButtonIcon icon={faHome} text="Discard" />
+              <ButtonIcon icon={faCancel} text="Discard" />
             </Link>
             
             <Link to="/">
-            <div onClick={handleCreateTask}><ButtonIcon icon={faHome} text="Add task" /></div>
+            <div onClick={handleCreateTask}><ButtonIcon icon={faSave} text="Add task" /></div>
             </Link>
           </div>
         </div>
@@ -132,7 +132,7 @@ function Newtask() {
           <div className="simpFlexRow">
             <textarea
               name="details"
-              rows="6"
+              rows="8"
               cols="50"
               value={formData.details}
               onChange={handleInputChange}
