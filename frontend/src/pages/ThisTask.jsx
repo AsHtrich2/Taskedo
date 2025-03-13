@@ -29,7 +29,7 @@ function ThisTask() {
           "Content-Type": "application/json"
         },
       };
-      const response = await fetch(`/api/tasks/${taskID}`, requestOptions);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:8000"}/api/tasks/${taskID}`, requestOptions);
       if (!response.ok) {
         console.log("Something went wrong. Couldn't load the tasks");
       } else {
@@ -75,7 +75,7 @@ function ThisTask() {
           };
     
         try {
-          const response = await fetch(`/api/tasks/${taskID}`, requestOptions);
+          const response = await fetch(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:8000"}/api/tasks/${taskID}`, requestOptions);
     
           if (!response.ok) {
             console.log("Something went wrong when creating a task.");

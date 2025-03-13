@@ -29,7 +29,7 @@ const Taskbar = ({ id, title, details, start, selectedDate, priority }) => {
         };
 
         try {
-          const response = await fetch(`/api/MarkTasks/${id}`, requestOptions);
+          const response = await fetch(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:8000"}/api/MarkTasks/${id}`, requestOptions);
     
           if (!response.ok) {
             console.log("Something went wrong when updating the task.");

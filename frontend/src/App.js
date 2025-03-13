@@ -18,7 +18,7 @@ function App() {
         "Content-Type": "application/json"
       },
     };
-    const response = await fetch("/api/stats", requestOptions);
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:8000"}/api/stats`, requestOptions);
     if (!response.ok) {
       console.log("Something went wrong. Couldn't load the tasks");
     } else {
@@ -38,7 +38,7 @@ function App() {
         "Content-Type": "application/json"
       },
     };
-    const response = await fetch("/api/tasks", requestOptions);
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:8000"}/api/tasks`, requestOptions);
     if (!response.ok) {
       console.log("Something went wrong. Couldn't load the tasks");
     } else {
