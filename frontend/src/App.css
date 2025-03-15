@@ -4,7 +4,7 @@
 }
 
 .header {
-  height: 70px;
+  height: 65px;
   border-bottom: 1px solid #000000; 
   background-color: #f5f5dc;
   display: flex;
@@ -25,16 +25,54 @@
 }
 
 .FirstCont {
-  margin-left: 200px;
-  margin-right: 200px;
+  margin-left: 50px;
+  margin-right: 50px;
   height: 500px;
   padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.LeftCont {
+  margin-top: 53px;
+  display: flex;
+  flex-direction: column; 
+  gap: 25px; 
+  border-radius: 15px;
+  background-color: #1f1f1c; 
+  height: 100px; 
+  padding: 10px 12px;
+  width: 15%; 
+}
+
+.LeftCont div{
+  width: 110px;
+}
+.RightCont {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+}
+
+.FormCont {
+  display: flex;
+  margin-left: 150px;
+  margin-right: 150px;
+  flex-direction: column;
+  width: 100%;
 }
 
 .TopButtonCont {
   display: flex;
   flex-direction: row;
-  justify-content: space-between; 
+  justify-content: space-between;
+  
+}
+
+.TopButtonContSpec {
+  justify-content: right;
+  width: 850px;
 }
 
 .TopButtonContLeft {
@@ -51,12 +89,12 @@
 
 .icon-button {
   display: flex;
-  align-items: center; /* Aligns the icon and text vertically */
-  padding: 10px 20px; /* Adds padding inside the button */
-  border: 1px solid #2b2b2b; 
-  border-radius: 5px; 
-  background-color: #f5f5dc; 
-  color: black; 
+  align-items: center; 
+  padding: 10px 20px; 
+  border: 2px solid beige; 
+  border-radius: 10px; 
+  background-color: black; 
+  color: beige; 
   font-size: 16px; 
   cursor: pointer; 
   
@@ -85,13 +123,14 @@
   margin-top: 10px;
   background-color: #1f1f1c; 
   height: 420px; 
-  padding: 10px;
+  padding: 10px 12px;
   overflow-y: auto; 
   display: flex;
   flex-direction: column; 
   gap: 5px; 
   border-radius: 15px;
-  border: 3px solid beige;
+  outline: 4px solid beige;
+  width: 850px;
 }
 
 .SecContSpec {
@@ -107,7 +146,7 @@
 
 .task-container {
   display: flex; 
-  height: 65px; 
+  height: 75px; 
   border: 1px solid #ccc;
   border-radius: 15px;
   background-color: beige;
@@ -125,6 +164,19 @@
   justify-content: center;
   align-items: flex-start;
   gap: 2px;
+}
+
+.task-priority {
+  font-size: 10px;
+  background-color: #007bff;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 0;
+  white-space: nowrap;
+  width: 40px; 
+  display: block;
+  text-align: center;
+  color: white;
 }
 
 .task-title {
@@ -311,4 +363,18 @@
 .selected {
   background-color: black;
   color: beige;
+}
+
+.SecCont::-webkit-scrollbar {
+  width: 10px; 
+  padding-right: 2px;
+}
+
+.SecCont::-webkit-scrollbar-thumb {
+  background-color: beige;
+  border-radius: 25px;
+}
+
+.SecCont::-webkit-scrollbar-thumb:hover {
+  background-color: #555; 
 }

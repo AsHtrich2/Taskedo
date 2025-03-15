@@ -9,14 +9,24 @@ const Taskbar = ({ id, title, details, start, selectedDate, priority }) => {
     const getBorderColor = (priority) => {
         switch(priority) {
             case 'High':
-                return 'red'; 
+                return '#554e4c';  
             case 'Medium':
-                return 'orange'; 
+                return '#a6a294';  
             case 'Low':
-                return 'blue'; 
+                return '#a0a4b0';  
             case 'None':
-                return 'green'; 
-        }
+                return '#a1b3af';  
+        }    
+        // switch(priority) {
+        //     case 'High':
+        //         return '#554e4c';  
+        //     case 'Medium':
+        //         return '#94a5a2';  
+        //     case 'Low':
+        //         return '#9497a5';  
+        //     case 'None':
+        //         return '#a5a294';  
+        // }         
     };
 
     const handleUpdateTask = async (e) => {
@@ -47,10 +57,16 @@ const Taskbar = ({ id, title, details, start, selectedDate, priority }) => {
                 className="task-container"
                 onClick={() => navigate(`/tasks/${id}`)}
                 style={{
-                    border: `3px solid ${getBorderColor(priority)}` 
+                    borderLeft: `10px solid ${getBorderColor(priority)}`, 
+                    borderRight: `10px solid ${getBorderColor(priority)}` ,
+                    borderTop: `3px solid ${getBorderColor(priority)}`, 
+                    borderBottom: `3px solid ${getBorderColor(priority)}` 
                 }}
             >
                 <div className="left-section">
+                    <p className='task-priority' style={{
+                    background: `${getBorderColor(priority)}` 
+                }}>{priority}</p>
                     <h3 className="task-title">{title}</h3>
                     <p className="task-details">{details}</p>
                 </div>

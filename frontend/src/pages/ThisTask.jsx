@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import ButtonIcon from '../components/ButtonIcon';
 import { faCancel, faTasks, faSave } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 function ThisTask() {
@@ -80,7 +79,7 @@ function ThisTask() {
           if (!response.ok) {
             console.log("Something went wrong when creating a task.");
           } else {
-              navigate(-1);
+              navigate("/");
           }
         } catch (error) {
           console.log("An error occurred while creating a task.");
@@ -107,18 +106,19 @@ function ThisTask() {
     <div className="App">
       <Header />
       <div className="FirstCont">
+        <div className='FormCont'>
         <div className="TopButtonCont">
           <div className="TopButtonContLeft">
             <ButtonIcon icon={faTasks} text={string} />
           </div>
           <div className="TopButtonContRight">
-            <Link to="/">
+            <div onClick={() => navigate("/")}>
               <ButtonIcon icon={faCancel} text="Discard" />
-            </Link>
+            </div>
             
-            <Link to="/">
+            
             <div onClick={handleUpdateTask}><ButtonIcon icon={faSave} text="Edit task" /></div>
-            </Link>
+            
           </div>
         </div>
         <div className="SecCont">
@@ -207,6 +207,7 @@ function ThisTask() {
               </button>
             ))}
           </div>
+        </div>
         </div>
       </div>
     </div>

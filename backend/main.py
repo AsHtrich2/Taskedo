@@ -3,6 +3,7 @@ import sqlalchemy.orm as _orm
 import services as _services, schemas as _schemas, models as _models
 from typing import List
 from fastapi.middleware.cors import CORSMiddleware
+import datetime as _dt
 
 app = _fastapi.FastAPI()
 
@@ -19,9 +20,21 @@ app.add_middleware(
 async def create_tasks(tasks: _schemas.Tasks, db: _orm.Session = _fastapi.Depends(_services.get_db),):
     return await _services.create_tasks(tasks=tasks, db=db)
 
-@app.get("/api/tasks", response_model=List[_schemas.Tasks])
-async def get_tasks(db: _orm.Session = _fastapi.Depends(_services.get_db)):
-   return await _services.get_tasks(db=db)
+@app.get("/api/ptasks", response_model=List[_schemas.Tasks])
+async def get_pending_tasks(db: _orm.Session = _fastapi.Depends(_services.get_db)):
+   return await _services.get_pending_tasks(db=db)
+
+@app.get("/api/ctasks", response_model=List[_schemas.Tasks])
+async def get_completed_tasks(db: _orm.Session = _fastapi.Depends(_services.get_db)):
+   return await _services.get_completed_tasks(db=db)
+
+@app.get("/api/atasks", response_model=List[_schemas.Tasks])
+async def get_all_tasks(db: _orm.Session = _fastapi.Depends(_services.get_db)):
+   return await _services.get_all_tasks(db=db)
+
+@app.get("/api/ttasks/{today}", response_model=List[_schemas.Tasks])
+async def get_today_tasks(today: _dt.date, db: _orm.Session = _fastapi.Depends(_services.get_db)):
+   return await _services.get_today_tasks(today=today,db=db)
 
 @app.get("/api/tasks/{taskID}", status_code=200)
 async def get_this_task( taskID: int, db: _orm.Session = _fastapi.Depends(_services.get_db)):

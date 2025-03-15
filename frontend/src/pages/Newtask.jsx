@@ -66,7 +66,7 @@ function Newtask() {
       if (!response.ok) {
         console.log("Something went wrong when creating a task.");
       } else {
-          navigate(-1);
+          navigate("/");
       }
     } catch (error) {
       console.log("An error occurred while creating a task.");
@@ -93,18 +93,18 @@ function Newtask() {
     <div className="App">
       <Header />
       <div className="FirstCont">
+      
+        <div className='FormCont'>
         <div className="TopButtonCont">
           <div className="TopButtonContLeft">
             <ButtonIcon icon={faTasks} text={`Task no ${statData.totalTasks}`} />
           </div>
           <div className="TopButtonContRight">
-            <Link to="/">
+            <div onClick={() => navigate("/")}>
               <ButtonIcon icon={faCancel} text="Discard" />
-            </Link>
-            
-            <Link to="/">
+            </div>
             <div onClick={handleCreateTask}><ButtonIcon icon={faSave} text="Add task" /></div>
-            </Link>
+            
           </div>
         </div>
         <div className="SecCont">
@@ -194,6 +194,8 @@ function Newtask() {
             ))}
           </div>
         </div>
+        </div>
+        
       </div>
     </div>
   );

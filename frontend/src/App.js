@@ -9,7 +9,9 @@ import { useNavigate } from 'react-router-dom';
 
 function App() {
   const [taskData, setTaskData] = useState([]);
-  const [statData, setStatData] = useState({ pendingTasks: 0, completedTasks: 0 , totalTasks: 0});
+  const today = new Date().toISOString().split('T')[0];
+  const [option, setOption] = useState('ptasks');
+  const [statData, setStatData] = useState({ pendingTasks: 0, completedTasks: 0 , totalTasks: 0, totaltoday : 0});
   const navigate = useNavigate();
   const getStats = async () => {
     const requestOptions = {
@@ -26,10 +28,9 @@ function App() {
       setStatData(data); 
     }
   };
-
   useEffect(() => {
     getStats();
-  }, []);
+  }, [option]);
 
   const getTasks = async () => {
     const requestOptions = {
@@ -38,7 +39,7 @@ function App() {
         "Content-Type": "application/json"
       },
     };
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:8000"}/api/tasks`, requestOptions);
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:8000"}/api/${option}`, requestOptions);
     if (!response.ok) {
       console.log("Something went wrong. Couldn't load the tasks");
     } else {
@@ -49,7 +50,7 @@ function App() {
 
   useEffect(() => {
     getTasks();
-  }, []);
+  }, [option]);
 
   const formatTime = (timeString) => {
     if (!timeString) return ''; 
@@ -57,19 +58,43 @@ function App() {
     return `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}`;
   };
 
+  const getButtonStyle = (buttonOption) => {
+    if (option === buttonOption) {
+      return {
+        backgroundColor: '#f5f5dc', // Beige background
+        color: '#000', // Black text and icon color
+        border: 'none', // Remove border if needed (optional)
+      };
+    }
+    return {};
+  };
+
   return (
     <div className="App">
       <Header />
       <div className='FirstCont'>
-        <div className='TopButtonCont'>
-          <div className='TopButtonContLeft'>
-            <ButtonIcon icon={faCalendarAlt} text={`${statData.pendingTasks} Pending`} />
-            <ButtonIcon icon={faCalendarCheck} text={`${statData.completedTasks} Completed`} />
-          </div>
+        <div className='LeftCont'>
+        
+        <div onClick={()=>setOption('ptasks')}>
+        <ButtonIcon icon={faCalendarAlt} text={`Pending (${statData.pendingTasks})`} style={getButtonStyle('ptasks')}  />
+        </div>
+        <div onClick={()=>setOption('ctasks')}>
+        <ButtonIcon icon={faCalendarCheck} text={`Completed(${statData.completedTasks})`} style={getButtonStyle('ctasks')} />
+        </div>
+        <div onClick={()=>setOption('atasks')}>
+        <ButtonIcon icon={faCalendarCheck} text={`All Tasks (${statData.totalTasks - 1})`} style={getButtonStyle('atasks')} />
+        </div>
+        <div onClick={()=>setOption(`ttasks/${today}`)}>
+        <ButtonIcon icon={faCalendarCheck} text={`Today (${statData.totaltoday})`} style={getButtonStyle(`ttasks/${today}`)} />
+        </div>
+        </div>
+        <div className='RightCont'>
+        <div className='TopButtonCont TopButtonContSpec'>
+          
           <div className='TopButtonContRight'>
             {/* <IconIcon /> */}
             <div onClick={() => navigate("/newtask")}>
-              <ButtonIcon icon={faPlus} text="New task" />
+              <ButtonIcon icon={faPlus} text="Create new task" />
             </div>
           </div>
         </div>
@@ -87,6 +112,8 @@ function App() {
            
           ))}
         </div>
+        </div>
+        
       </div>        
     </div>
   );

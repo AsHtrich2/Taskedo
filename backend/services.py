@@ -26,8 +26,20 @@ async def create_tasks(tasks: _schemas.Tasks, db: _orm.Session):
     return tasks_obj
 
 
-async def get_tasks(db: _orm.Session):
-    allTasks = db.query(_models.Tasks).filter(_models.Tasks.status == "Pending")
+async def get_pending_tasks(db: _orm.Session):
+    allTasks = db.query(_models.Tasks).filter(_models.Tasks.status == "Pending").order_by(_models.Tasks.selectedDate.asc(), _models.Tasks.start.asc())
+    return list(map(_schemas.Tasks.model_validate, allTasks))
+
+async def get_completed_tasks(db: _orm.Session):
+    allTasks = db.query(_models.Tasks).filter(_models.Tasks.status == "Completed").order_by(_models.Tasks.selectedDate.asc(), _models.Tasks.start.asc())
+    return list(map(_schemas.Tasks.model_validate, allTasks))
+
+async def get_all_tasks(db: _orm.Session):
+    allTasks = db.query(_models.Tasks).order_by(_models.Tasks.selectedDate.asc(), _models.Tasks.start.asc())
+    return list(map(_schemas.Tasks.model_validate, allTasks))
+
+async def get_today_tasks(today,db: _orm.Session):
+    allTasks = db.query(_models.Tasks).filter(_models.Tasks.selectedDate == today).order_by(_models.Tasks.selectedDate.asc(), _models.Tasks.start.asc())
     return list(map(_schemas.Tasks.model_validate, allTasks))
 
 
@@ -77,16 +89,19 @@ async def mark_task(taskID, db: _orm.Session):
     return _schemas.Tasks.from_orm(task)
 
 async def get_stats(db: _orm.Session):
+    today = _dt.date.today().strftime('%Y-%m-%d')
     pendingTasks = db.query(_models.Tasks).filter(_models.Tasks.status == "Pending").all()
     compTasks = db.query(_models.Tasks).filter(_models.Tasks.status == "Completed").all()
-
+    todayTasks = db.query(_models.Tasks).filter(_models.Tasks.selectedDate == today).all()
     pending_count = len(pendingTasks)
     completed_count = len(compTasks)
     totalTasks = pending_count + completed_count + 1
+    total_today = len(todayTasks)
     
 
     return {
         "pendingTasks": pending_count,
         "completedTasks": completed_count,
-        "totalTasks" : totalTasks
+        "totalTasks" : totalTasks,
+        "totaltoday" : total_today
     }
