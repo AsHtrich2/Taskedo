@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { faLightbulb, faMoon } from '@fortawesome/free-solid-svg-icons'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Header = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  // Check local storage for saved theme preference
+  const [isDarkMode, setIsDarkMode] = useState(true);
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
@@ -12,12 +10,10 @@ const Header = () => {
     }
   }, []);
 
-  // Toggle between light and dark mode
   const toggleTheme = () => {
     setIsDarkMode((prevMode) => !prevMode);
   };
 
-  // Update the body's class and save theme preference in local storage
   useEffect(() => {
     if (isDarkMode) {
       document.body.classList.add('dark-mode');
