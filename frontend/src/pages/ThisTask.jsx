@@ -52,6 +52,27 @@ function ThisTask() {
       getTasks();
     }, []);
 
+    const handleCompleteTask = async (e) => {
+        e.preventDefault();
+        const requestOptions = {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          }
+        };
+
+        try {
+          const response = await fetch(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:8000"}/api/MarkTasks/${taskID}`, requestOptions);
+    
+          if (!response.ok) {
+            console.log("Something went wrong when updating the task.");
+          } else {
+            navigate("/"); 
+          }
+        } catch (error) {
+          console.log("An error occurred while updating the task.");
+        }
+      };
 
     const handleUpdateTask = async (e) => {
         e.preventDefault();
@@ -116,8 +137,8 @@ function ThisTask() {
               <ButtonIcon icon={faCancel} text="Discard" />
             </div>
             
-            
-            <div onClick={handleUpdateTask}><ButtonIcon icon={faSave} text="Edit task" /></div>
+            <div onClick={handleCompleteTask}><ButtonIcon icon={faSave} text="Mark Completed" /></div>
+            <div onClick={handleUpdateTask}><ButtonIcon icon={faSave} text="Update task" /></div>
             
           </div>
         </div>

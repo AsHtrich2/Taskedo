@@ -61,9 +61,9 @@ function App() {
   const getButtonStyle = (buttonOption) => {
     if (option === buttonOption) {
       return {
-        backgroundColor: '#f5f5dc', // Beige background
-        color: '#000', // Black text and icon color
-        border: 'none', // Remove border if needed (optional)
+        backgroundColor: '#f5f5dc', 
+        color: '#000', 
+        border: '2px solid #000', 
       };
     }
     return {};

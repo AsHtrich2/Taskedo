@@ -3,6 +3,7 @@ import datetime as _dt
 import sqlalchemy.orm as _orm
 import database as _database, models as _models, schemas as _schemas
 from sqlalchemy import update
+from typing import List
 
 def create_database():
     return _database.Base.metadata.create_all(bind=_database.engine)
@@ -16,14 +17,35 @@ def get_db():
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
-async def create_tasks(tasks: _schemas.Tasks, db: _orm.Session):
-    tasks_obj = _models.Tasks(
-         title=tasks.title, details=tasks.details, priority=tasks.priority, createDate=tasks.createDate,selectedDate=tasks.selectedDate, start=tasks.start, end=tasks.end, status=tasks.status
-    )
-    db.add(tasks_obj)
-    db.commit()
-    db.refresh(tasks_obj)
-    return tasks_obj
+# async def create_tasks(tasks: _schemas.Tasks, db: _orm.Session):
+#     tasks_obj = _models.Tasks(
+#          title=tasks.title, details=tasks.details, priority=tasks.priority, createDate=tasks.createDate,selectedDate=tasks.selectedDate, start=tasks.start, end=tasks.end, status=tasks.status
+#     )
+#     db.add(tasks_obj)
+#     db.commit()
+#     db.refresh(tasks_obj)
+#     return tasks_obj
+
+async def create_tasks(tasks: List[_schemas.Tasks], db: _orm.Session):
+    created_tasks = []
+    for task in tasks:
+        tasks_obj = _models.Tasks(
+            title=task.title, 
+            details=task.details, 
+            priority=task.priority, 
+            createDate=task.createDate, 
+            selectedDate=task.selectedDate, 
+            start=task.start, 
+            end=task.end, 
+            status=task.status
+        )
+        db.add(tasks_obj)
+        db.commit()
+        db.refresh(tasks_obj)
+        created_tasks.append(tasks_obj)
+    
+    return created_tasks
+
 
 
 async def get_pending_tasks(db: _orm.Session):

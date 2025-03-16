@@ -11,7 +11,7 @@ const Taskbar = ({ id, title, details, start, selectedDate, priority }) => {
             case 'High':
                 return '#554e4c';  
             case 'Medium':
-                return '#a6a294';  
+                return '#b0a0a4';  
             case 'Low':
                 return '#a0a4b0';  
             case 'None':

@@ -16,8 +16,12 @@ app.add_middleware(
 )
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
-@app.post("/api/tasks", response_model=_schemas.Tasks)
-async def create_tasks(tasks: _schemas.Tasks, db: _orm.Session = _fastapi.Depends(_services.get_db),):
+# @app.post("/api/tasks", response_model=List[_schemas.Tasks])
+# async def create_tasks(tasks: _schemas.Tasks, db: _orm.Session = _fastapi.Depends(_services.get_db),):
+#     return await _services.create_tasks(tasks=tasks, db=db)
+
+@app.post("/api/tasks", response_model=List[_schemas.Tasks])
+async def create_tasks(tasks: List[_schemas.Tasks], db: _orm.Session = _fastapi.Depends(_services.get_db)):
     return await _services.create_tasks(tasks=tasks, db=db)
 
 @app.get("/api/ptasks", response_model=List[_schemas.Tasks])
