@@ -2,7 +2,6 @@ import fastapi as _fastapi
 import datetime as _dt
 import sqlalchemy.orm as _orm
 import database as _database, models as _models, schemas as _schemas
-from sqlalchemy import update
 from typing import List
 
 def create_database():

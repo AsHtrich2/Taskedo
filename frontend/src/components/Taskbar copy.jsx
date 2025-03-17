@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck , faUndo} from '@fortawesome/free-solid-svg-icons'; 
+import { faCheck , faTimes} from '@fortawesome/free-solid-svg-icons'; 
 import { useNavigate } from 'react-router-dom';
 
 const Taskbar = ({ id, title, details, start, selectedDate, priority, status }) => {
@@ -74,15 +74,9 @@ const Taskbar = ({ id, title, details, start, selectedDate, priority, status }) 
                 }}
             >
                 <div className="left-section">
-                    <div className='tags'>
-                        <p className='task-priority' style={{
-                        background: `${getBorderColor(priority)}` ,color: 'black',
-                    }}>{priority}</p>
-                        <p className='task-status' style={{
-                            background: `${getBorderColor(priority)}` ,color: 'black',
-                        }}>{status}</p>
-                    </div>
-                   
+                    <p className='task-priority' style={{
+                    background: `${getBorderColor(priority)}` ,color: 'black',
+                }}>{priority}</p>
                     <h3 className="task-title">{title}</h3>
                     <p className="task-details">{details}</p>
                 </div>
@@ -93,7 +87,7 @@ const Taskbar = ({ id, title, details, start, selectedDate, priority, status }) 
                 </div> 
             </div>
             <button className="complete-btn" onClick={handleUpdateTask}>
-                <FontAwesomeIcon icon={status === 'Completed' ? faUndo : faCheck} />
+                <FontAwesomeIcon icon={status === 'Completed' ? faTimes : faCheck} />
             </button>
         </div>
     );

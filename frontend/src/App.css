@@ -193,6 +193,12 @@
   gap: 2px;
 }
 
+.tags {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  width: 200px;
+}
 .task-priority {
   font-size: 10px;
   background-color: #007bff;
@@ -201,6 +207,19 @@
   margin: 0;
   white-space: nowrap;
   width: 40px; 
+  display: block;
+  text-align: center;
+  color: white;
+}
+
+.task-status {
+  font-size: 10px;
+  background-color: #007bff;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 0;
+  white-space: nowrap;
+  width: 50px; 
   display: block;
   text-align: center;
   color: white;
