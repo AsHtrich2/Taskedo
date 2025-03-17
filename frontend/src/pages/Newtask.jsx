@@ -82,6 +82,13 @@ function Newtask() {
     }));
   };
 
+  const handleCreate = (e) => {
+    e.preventDefault(); 
+    handleCreateTask(e); 
+    alert('New task added');
+    navigate("/"); 
+  };
+
   const handlePriorityClick = (priority) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -103,7 +110,7 @@ function Newtask() {
             <div onClick={() => navigate("/")}>
               <ButtonIcon icon={faCancel} text="Discard" />
             </div>
-            <div onClick={handleCreateTask}><ButtonIcon icon={faSave} text="Add task" /></div>
+            <div onClick={handleCreate}><ButtonIcon icon={faSave} text="Add task" /></div>
             
           </div>
         </div>
@@ -121,6 +128,8 @@ function Newtask() {
               onChange={handleInputChange}
               className="inputBox"
               placeholder="Enter title..."
+              required
+              maxLength={100}
             />
           </div>
 
@@ -138,6 +147,8 @@ function Newtask() {
               onChange={handleInputChange}
               className="textBox"
               placeholder="Add details..."
+              required
+              maxLength={200}
             />
           </div>
 

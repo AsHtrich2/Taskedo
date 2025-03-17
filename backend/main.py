@@ -51,6 +51,10 @@ async def update_task(taskID: int, tasks: _schemas.Tasks, db: _orm.Session = _fa
 @app.put("/api/MarkTasks/{taskID}", response_model=_schemas.Tasks)
 async def mark_task(taskID: int, db: _orm.Session = _fastapi.Depends(_services.get_db)):
     return await _services.mark_task(taskID=taskID,db=db)
+
+@app.put("/api/UnMarkTasks/{taskID}", response_model=_schemas.Tasks)
+async def unmark_task(taskID: int, db: _orm.Session = _fastapi.Depends(_services.get_db)):
+    return await _services.unmark_task(taskID=taskID,db=db)
     
 @app.delete("/api/tasks/{taskID}", status_code=204)
 async def delete_task(taskID: int, db: _orm.Session = _fastapi.Depends(_services.get_db)):

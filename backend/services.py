@@ -108,6 +108,15 @@ async def mark_task(taskID, db: _orm.Session):
 
     return _schemas.Tasks.from_orm(task)
 
+async def unmark_task(taskID, db: _orm.Session):
+    task = (db.query(_models.Tasks).filter(_models.Tasks.taskID == taskID).first())
+    task.status = "Pending"
+
+    db.commit()
+    db.refresh(task)
+
+    return _schemas.Tasks.from_orm(task)
+
 async def get_stats(db: _orm.Session):
     today = _dt.date.today().strftime('%Y-%m-%d')
     pendingTasks = db.query(_models.Tasks).filter(_models.Tasks.status == "Pending").all()

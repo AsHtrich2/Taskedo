@@ -1,22 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons'; 
+import { faCheck , faTimes} from '@fortawesome/free-solid-svg-icons'; 
 import { useNavigate } from 'react-router-dom';
 
-const Taskbar = ({ id, title, details, start, selectedDate, priority }) => {
+const Taskbar = ({ id, title, details, start, selectedDate, priority, status }) => {
     const navigate = useNavigate();
-
     const getBorderColor = (priority) => {
         switch(priority) {
             case 'High':
-                return '#554e4c';  
+                return '#DEAA79';  
             case 'Medium':
-                return '#b0a0a4';  
+                return '#FADA7A';  
             case 'Low':
-                return '#a0a4b0';  
+                return '#BAD8B6';  
             case 'None':
-                return '#a1b3af';  
+                return '#C5D3E8';  
         }    
+        // switch(priority) {
+        //     case 'High':
+        //         return '#554e4c';  
+        //     case 'Medium':
+        //         return '#b0a0a4';  
+        //     case 'Low':
+        //         return '#a0a4b0';  
+        //     case 'None':
+        //         return '#a1b3af';  
+        // }    
         // switch(priority) {
         //     case 'High':
         //         return '#554e4c';  
@@ -37,9 +46,10 @@ const Taskbar = ({ id, title, details, start, selectedDate, priority }) => {
             "Content-Type": "application/json",
           }
         };
-
+        
+        const endpoint = status === 'Completed' ? `/api/UnMarkTasks/${id}` : `/api/MarkTasks/${id}`; 
         try {
-          const response = await fetch(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:8000"}/api/MarkTasks/${id}`, requestOptions);
+          const response = await fetch(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:8000"}${endpoint}`, requestOptions);
     
           if (!response.ok) {
             console.log("Something went wrong when updating the task.");
@@ -65,7 +75,7 @@ const Taskbar = ({ id, title, details, start, selectedDate, priority }) => {
             >
                 <div className="left-section">
                     <p className='task-priority' style={{
-                    background: `${getBorderColor(priority)}` 
+                    background: `${getBorderColor(priority)}` ,color: 'black',
                 }}>{priority}</p>
                     <h3 className="task-title">{title}</h3>
                     <p className="task-details">{details}</p>
@@ -77,7 +87,7 @@ const Taskbar = ({ id, title, details, start, selectedDate, priority }) => {
                 </div> 
             </div>
             <button className="complete-btn" onClick={handleUpdateTask}>
-                <FontAwesomeIcon icon={faCheck} />
+                <FontAwesomeIcon icon={status === 'Completed' ? faTimes : faCheck} />
             </button>
         </div>
     );

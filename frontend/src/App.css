@@ -24,7 +24,7 @@
   align-items: center;
 }
 .theme-toggle-btn {
-  width: 40px;
+  width: 140px;
   height: 30px;
   border-radius: 20px;
   border: 2px solid black;
@@ -35,8 +35,13 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-
+  gap: 8px;
 }
+
+.theme-toggle-btn div {
+  font-size: 15px;
+}
+
 
 
 .header h1 {

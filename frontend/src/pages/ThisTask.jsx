@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import ButtonIcon from '../components/ButtonIcon';
-import { faCancel, faTasks, faSave } from '@fortawesome/free-solid-svg-icons';
+import { faCancel, faTasks, faSave, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
 function ThisTask() {
@@ -67,7 +67,7 @@ function ThisTask() {
           if (!response.ok) {
             console.log("Something went wrong when updating the task.");
           } else {
-            navigate("/"); 
+            console.log("Task Updated");
           }
         } catch (error) {
           console.log("An error occurred while updating the task.");
@@ -108,6 +108,13 @@ function ThisTask() {
         }
       };
 
+      const handleUpdate = (e) => {
+        e.preventDefault(); 
+        handleUpdateTask(e); 
+        alert('Task Updated');
+        navigate("/"); 
+      };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -137,8 +144,8 @@ function ThisTask() {
               <ButtonIcon icon={faCancel} text="Discard" />
             </div>
             
-            <div onClick={handleCompleteTask}><ButtonIcon icon={faSave} text="Mark Completed" /></div>
-            <div onClick={handleUpdateTask}><ButtonIcon icon={faSave} text="Update task" /></div>
+            <div onClick={handleCompleteTask}><ButtonIcon icon={faCheckSquare} text="Completed" /></div>
+            <div onClick={handleUpdate}><ButtonIcon icon={faSave} text="Update" /></div>
             
           </div>
         </div>

@@ -4,7 +4,7 @@ import Header from './components/Header';
 import ButtonIcon from './components/ButtonIcon';
 // import IconIcon from './components/IconIcon';
 import Taskbar from './components/Taskbar';
-import { faCalendarAlt, faCalendarCheck, faPlus } from '@fortawesome/free-solid-svg-icons'; 
+import { faCalendarAlt, faCalendarCheck, faPlus,faList, faCalendarDay } from '@fortawesome/free-solid-svg-icons'; 
 import { useNavigate } from 'react-router-dom';
 
 function App() {
@@ -74,7 +74,9 @@ function App() {
       <Header />
       <div className='FirstCont'>
         <div className='LeftCont'>
-        
+        <div onClick={()=>setOption(`ttasks/${today}`)}>
+        <ButtonIcon icon={faCalendarDay} text={`Today (${statData.totaltoday})`} style={getButtonStyle(`ttasks/${today}`)} />
+        </div>
         <div onClick={()=>setOption('ptasks')}>
         <ButtonIcon icon={faCalendarAlt} text={`Pending (${statData.pendingTasks})`} style={getButtonStyle('ptasks')}  />
         </div>
@@ -82,11 +84,9 @@ function App() {
         <ButtonIcon icon={faCalendarCheck} text={`Completed(${statData.completedTasks})`} style={getButtonStyle('ctasks')} />
         </div>
         <div onClick={()=>setOption('atasks')}>
-        <ButtonIcon icon={faCalendarCheck} text={`All Tasks (${statData.totalTasks - 1})`} style={getButtonStyle('atasks')} />
+        <ButtonIcon icon={faList} text={`All Tasks (${statData.totalTasks - 1})`} style={getButtonStyle('atasks')} />
         </div>
-        <div onClick={()=>setOption(`ttasks/${today}`)}>
-        <ButtonIcon icon={faCalendarCheck} text={`Today (${statData.totaltoday})`} style={getButtonStyle(`ttasks/${today}`)} />
-        </div>
+        
         </div>
         <div className='RightCont'>
         <div className='TopButtonCont TopButtonContSpec'>
@@ -100,7 +100,7 @@ function App() {
         </div>
         <div className='SecCont SecContSpec'>
           {taskData.map((task, index) => (
-
+        
             <Taskbar 
               id={task.taskID}
               title={task.title}
@@ -108,6 +108,7 @@ function App() {
               start={formatTime(task.start)} 
               selectedDate={task.selectedDate}
               priority={task.priority}
+              status={task.status}
             />
            
           ))}

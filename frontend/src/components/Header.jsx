@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { faLightbulb, faMoon } from '@fortawesome/free-solid-svg-icons'; 
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -33,7 +33,10 @@ const Header = () => {
         <div>
           <p>. . . . your daily task writer</p> 
           <button onClick={toggleTheme} className="theme-toggle-btn">
-            {isDarkMode ? <FontAwesomeIcon icon={faLightbulb} />: <FontAwesomeIcon icon={faMoon} />}
+            {isDarkMode ? <FontAwesomeIcon icon={faSun} />: <FontAwesomeIcon icon={faMoon} />}
+            <div>
+            {isDarkMode ? "Light Mode": "Dark Mode" }
+            </div>
           </button>
         </div>
         
