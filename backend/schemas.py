@@ -12,8 +12,6 @@ class _TasksBase(_pyd.BaseModel):
     start: _dt.time  
     end: _dt.time 
     status : str
-class TasksCreate(_TasksBase):
-    pass
 
 class Tasks(_TasksBase):
     taskID : int 

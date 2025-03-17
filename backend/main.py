@@ -9,20 +9,20 @@ app = _fastapi.FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Adjust this if your frontend is served from a different origin
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# @app.post("/api/tasks", response_model=List[_schemas.Tasks])
-# async def create_tasks(tasks: _schemas.Tasks, db: _orm.Session = _fastapi.Depends(_services.get_db),):
-#     return await _services.create_tasks(tasks=tasks, db=db)
-
-@app.post("/api/tasks", response_model=List[_schemas.Tasks])
-async def create_tasks(tasks: List[_schemas.Tasks], db: _orm.Session = _fastapi.Depends(_services.get_db)):
+@app.post("/api/tasks", response_model=_schemas.Tasks)
+async def create_tasks(tasks: _schemas.Tasks, db: _orm.Session = _fastapi.Depends(_services.get_db),):
     return await _services.create_tasks(tasks=tasks, db=db)
+
+# @app.post("/api/tasks", response_model=List[_schemas.Tasks])
+# async def create_tasks(tasks: List[_schemas.Tasks], db: _orm.Session = _fastapi.Depends(_services.get_db)):
+#     return await _services.create_tasks(tasks=tasks, db=db)
 
 @app.get("/api/ptasks", response_model=List[_schemas.Tasks])
 async def get_pending_tasks(db: _orm.Session = _fastapi.Depends(_services.get_db)):
